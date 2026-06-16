@@ -8,6 +8,6 @@
     "75": "Ultra-rare chances unlock",
     "100": "Root Node opens"
   },
-  "updated_at": null,
-  "note": "Derived state - rewritten by tools/aggregate.py via GitHub Actions. Do not edit by hand."
+  "updated_at": "2026-06-16T04:38:55.305547Z",
+  "note": "Derived state - rewritten by tools/aggregate.py. Do not edit by hand."
 }
