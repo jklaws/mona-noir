@@ -1,0 +1,14 @@
+{
+  "player_id": "jklaws",
+  "github_handle": "jklaws",
+  "github_verified": true,
+  "device_id": "badge_jklaws",
+  "score": 5620,
+  "nodes_restored": ["github_learn","whats_up_docs","demos_donuts","open_source_zone","hack_your_badge","octocat_generator","github_next","stars_lounge","makerspace","root_node"],
+  "pins": ["verified_profile","commit","codespaces","projects","actions","honeypot","rubber_ducky","root_key","traceback","firewall"],
+  "defenses": ["firewall","honeypot","traceback"],
+  "go_dark": false,
+  "streak": 1,
+  "last_sync": "2026-06-16T16:00:00Z",
+  "case_counter": 10
+}
