@@ -9,13 +9,13 @@
   "standings": [
     {
       "handle": "jklaws",
-      "score": 5620,
-      "pins": 10,
+      "score": 7700,
+      "pins": 13,
       "nodes": 10,
       "rank": 1,
       "tier": "Root Key Holder"
     }
   ],
-  "updated_at": "2026-06-16T21:35:29.871343Z",
+  "updated_at": "2026-06-16T22:19:05.449402Z",
   "note": "Derived state - rewritten by tools/aggregate.py. Do not edit by hand."
 }
