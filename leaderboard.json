@@ -6,16 +6,7 @@
     "Graph Guardian",
     "Root Key Holder"
   ],
-  "standings": [
-    {
-      "handle": "jklaws",
-      "score": 7700,
-      "pins": 13,
-      "nodes": 10,
-      "rank": 1,
-      "tier": "Root Key Holder"
-    }
-  ],
-  "updated_at": "2026-06-16T22:19:05.449402Z",
+  "standings": [],
+  "updated_at": "2026-06-16T22:19:38.581948Z",
   "note": "Derived state - rewritten by tools/aggregate.py. Do not edit by hand."
 }
