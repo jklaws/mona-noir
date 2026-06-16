@@ -24,6 +24,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Recompute leaderboard + graph meter
+        env:
+          MONA_KEY: ${{ secrets.MONA_KEY }}
         run: python tools/aggregate.py
       - name: Commit derived state
         run: |
