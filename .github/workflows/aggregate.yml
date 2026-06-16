@@ -1,0 +1,38 @@
+name: Aggregate game state
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "players/**"
+      - "events/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggregate
+  cancel-in-progress: false
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Recompute leaderboard + graph meter
+        run: python tools/aggregate.py
+      - name: Commit derived state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add leaderboard.json graph_state.json
+          if git diff --staged --quiet; then
+            echo "no changes"
+          else
+            git commit -m "chore: recompute leaderboard + graph meter [skip ci]"
+            git push
+          fi

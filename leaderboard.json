@@ -1,0 +1,6 @@
+{
+  "tiers": ["Intern", "Triage Detective", "Merge Sleuth", "Graph Guardian", "Root Key Holder"],
+  "standings": [],
+  "updated_at": null,
+  "note": "Derived state - rewritten by tools/aggregate.py via GitHub Actions. Do not edit by hand."
+}

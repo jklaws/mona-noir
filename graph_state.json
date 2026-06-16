@@ -1,0 +1,13 @@
+{
+  "restored_percent": 0,
+  "nodes_restored_total": 0,
+  "milestones": {
+    "10": "Rare pins enter the pool",
+    "25": "Defense pins unlock",
+    "50": "NULLCAT corruption events begin",
+    "75": "Ultra-rare chances unlock",
+    "100": "Root Node opens"
+  },
+  "updated_at": null,
+  "note": "Derived state - rewritten by tools/aggregate.py via GitHub Actions. Do not edit by hand."
+}

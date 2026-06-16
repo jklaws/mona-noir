@@ -1,0 +1,9 @@
+{
+  "tier_1": { "common": 0.85, "rare": 0.13, "ultra_rare": 0.02 },
+  "tier_2": { "common": 0.70, "rare": 0.25, "ultra_rare": 0.05 },
+  "tier_3": { "common": 0.55, "rare": 0.35, "ultra_rare": 0.10 },
+  "tier_1_perfect": { "rare": 0.70, "ultra_rare": 0.30 },
+  "tier_2_perfect": { "rare": 0.60, "ultra_rare": 0.40 },
+  "tier_3_perfect": { "rare": 0.50, "ultra_rare": 0.50 },
+  "milestone_gates": { "rare_pool_at_percent": 10, "ultra_rare_pool_at_percent": 75 }
+}

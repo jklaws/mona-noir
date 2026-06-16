@@ -1,0 +1,13 @@
+{
+  "player_id": "example",
+  "github_handle": "example",
+  "github_verified": false,
+  "device_id": "badge_example",
+  "score": 0,
+  "nodes_restored": [],
+  "pins": [],
+  "defenses": [],
+  "go_dark": false,
+  "last_sync": null,
+  "case_counter": 0
+}

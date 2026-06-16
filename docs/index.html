@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MONA NOIR — Graph Status</title>
+<style>
+  body { margin: 0; background: #0d1117; color: #e6edf3; font: 16px/1.5 -apple-system, Segoe UI, Roboto, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 24px; }
+  h1 { color: #39d353; letter-spacing: 1px; margin-bottom: 2px; }
+  .meter { background: #161b22; border: 1px solid #30363d; border-radius: 10px; height: 26px; overflow: hidden; margin: 8px 0 4px; }
+  .fill { height: 100%; width: 0%; background: linear-gradient(90deg, #006d32, #39d353); transition: width .6s; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #21262d; }
+  th { color: #8b949e; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .5px; }
+  .tier { color: #39d353; }
+  .muted { color: #8b949e; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>MONA NOIR</h1>
+  <div class="muted">Ghost in the Graph — live status &amp; operative leaderboard</div>
+  <h2 id="pct">THE GRAPH: …</h2>
+  <div class="meter"><div class="fill" id="fill"></div></div>
+  <h2>Operatives</h2>
+  <table>
+    <thead><tr><th>#</th><th>Operative</th><th>Tier</th><th>Score</th><th>Pins</th></tr></thead>
+    <tbody id="rows"><tr><td colspan="5" class="muted">Loading…</td></tr></tbody>
+  </table>
+  <p class="muted" id="updated"></p>
+</div>
+<script>
+  const OWNER = "jklaws", REPO = "mona-noir";
+  const raw = p => `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/${p}?t=` + Date.now();
+  async function load() {
+    try {
+      const g = await (await fetch(raw("graph_state.json"))).json();
+      document.getElementById("pct").textContent = "THE GRAPH: " + (g.restored_percent || 0) + "% RESTORED";
+      document.getElementById("fill").style.width = (g.restored_percent || 0) + "%";
+    } catch (e) {}
+    try {
+      const l = await (await fetch(raw("leaderboard.json"))).json();
+      const rows = (l.standings || []).map(s =>
+        `<tr><td>${s.rank}</td><td>${s.handle}</td><td class="tier">${s.tier}</td><td>${s.score}</td><td>${s.pins}</td></tr>`).join("");
+      document.getElementById("rows").innerHTML = rows || '<tr><td colspan="5" class="muted">No operatives yet.</td></tr>';
+      if (l.updated_at) document.getElementById("updated").textContent = "Updated " + l.updated_at;
+    } catch (e) {}
+  }
+  load(); setInterval(load, 30000);
+</script>
+</body>
+</html>
