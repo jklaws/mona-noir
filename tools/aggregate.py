@@ -13,6 +13,42 @@ import datetime
 TIERS = ["Intern", "Triage Detective", "Merge Sleuth", "Graph Guardian", "Root Key Holder"]
 NODE_TARGET = 10  # districts including the Root Node
 
+MAX_SCORE = 200000
+MAX_NODES = 10
+MAX_PINS = 22
+KEY = bytes.fromhex(os.environ["MONA_KEY"]) if os.environ.get("MONA_KEY") else None
+
+
+def _dv(h, sc, nodes, pins, uid):
+    m = ("%s|%d|%s|%s" % (h, sc, ",".join(sorted(nodes)), ",".join(sorted(pins)))).encode()
+    v = 0xcbf29ce484222325
+    for b in KEY + uid + m:
+        v ^= b
+        v = (v * 0x100000001b3) & 0xFFFFFFFFFFFFFFFF
+    return "%016x" % v
+
+
+def _valid(p):
+    sc = int(p.get("score", 0))
+    nodes = p.get("nodes_restored", []) or []
+    pins = p.get("pins", []) or []
+    if sc < 0 or sc > MAX_SCORE:
+        return False
+    if len(nodes) > MAX_NODES or len(pins) > MAX_PINS:
+        return False
+    if KEY is None:
+        return True
+    dev = p.get("device")
+    chk = p.get("chk")
+    if not dev or not chk:
+        return False
+    try:
+        uid = bytes.fromhex(dev)
+    except Exception:
+        return False
+    h = p.get("github_handle") or p.get("player_id")
+    return _dv(h, sc, nodes, pins, uid) == chk
+
 
 def tier_for(rank, total):
     if total <= 0:
@@ -38,6 +74,9 @@ def main():
             with open(path) as f:
                 p = json.load(f)
         except Exception:
+            continue
+        if not _valid(p):
+            print("skip (failed verification):", os.path.basename(path))
             continue
         players.append({
             "handle": p.get("github_handle") or p.get("player_id"),
