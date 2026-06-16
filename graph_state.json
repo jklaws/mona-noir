@@ -1,6 +1,6 @@
 {
-  "restored_percent": 0,
-  "nodes_restored_total": 0,
+  "restored_percent": 100,
+  "nodes_restored_total": 10,
   "milestones": {
     "10": "Rare pins enter the pool",
     "25": "Defense pins unlock",
@@ -8,6 +8,6 @@
     "75": "Ultra-rare chances unlock",
     "100": "Root Node opens"
   },
-  "updated_at": "2026-06-16T04:38:55.305547Z",
+  "updated_at": "2026-06-16T21:35:29.871343Z",
   "note": "Derived state - rewritten by tools/aggregate.py. Do not edit by hand."
 }
